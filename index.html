@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyFacilQR</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Encabezado -->
+        <h1 class="title">MyFacilQR</h1>
+        
+        <!-- Selectores de ubicación con wrappers -->
+        <div class="selectors-container">
+            <div class="select-wrapper">
+                <select id="firstSelect" class="location-select" aria-label="Seleccionar letra">
+                    <!-- Se llenará con JavaScript -->
+                </select>
+            </div>
+            <div class="select-wrapper">
+                <select id="secondSelect" class="location-select" aria-label="Seleccionar número">
+                    <!-- Se llenará con JavaScript -->
+                </select>
+            </div>
+            <div class="select-wrapper">
+                <select id="thirdSelect" class="location-select" aria-label="Seleccionar posición">
+                    <!-- Se llenará con JavaScript -->
+                </select>
+            </div>
+        </div>
+
+        <!-- Contenedor de QR -->
+        <div class="qr-container">
+            <div id="qrcode" class="qrcode-display"></div>
+            <div id="qr-text" class="qr-text"></div>
+        </div>
+        
+        <!-- Contador para el refresco automático -->
+        <div id="countdown" class="countdown-text"></div>
+
+        <!-- Contenedor del scanner -->
+        <div id="scanner-container" class="scanner-container">
+            <!-- Aquí se mostrará la vista previa de la cámara y el marco de recorte -->
+        </div>
+
+        <!-- Controles principales (2x3) -->
+        <div class="button-group">
+            <!-- Primera fila: Acciones principales -->
+            <div class="button-row">
+                <button id="start-camera" class="action-button" aria-label="Escanear QR">
+                    📷
+                </button>
+                <button onclick="showSavedProducts()" class="action-button products-button" aria-label="Ver Productos">
+                    📦
+                </button>
+                <button id="voice-search-button" class="action-button voice-button" aria-label="Buscar por Voz">
+                    🎤
+                </button>
+            </div>
+            <!-- Segunda fila: Gestión de datos -->
+            <div class="button-row">
+                <button onclick="document.getElementById('file-input').click()" class="action-button import-button" aria-label="Importar JSON">
+                    ⬇️
+                </button>
+                <button onclick="exportProductsAsJson()" class="action-button export-button" aria-label="Exportar JSON">
+                    ⬆️
+                </button>
+                <button id="clear-button" class="action-button clear-btn" aria-label="Limpiar">
+                    🗑️
+                </button>
+            </div>
+        </div>
+
+        <!-- Input de archivo oculto para importar JSON -->
+        <input type="file" id="file-input" accept=".json,.txt" onchange="importProductsFromJson(event)">
+
+        <!-- Canvas oculto para procesamiento de imágenes -->
+        <canvas id="canvas" style="display: none;"></canvas>
+    </div>
+
+    <!-- Librerías necesarias -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@6.0.0/dist/tesseract.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quagga@0.12.1/dist/quagga.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
